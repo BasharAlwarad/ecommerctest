@@ -3,10 +3,7 @@ import express from 'express';
 import { userRouter } from './router/userRouter.ts';
 import errorHandler, { AppError } from './utils/errorHandler.ts';
 
-const PORT = 3000;
-// comments
-// comments
-// comments
+const PORT = process.env.PORT;
 
 const app = express();
 
