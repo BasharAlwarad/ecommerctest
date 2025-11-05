@@ -1,6 +1,7 @@
 import express from 'express';
 
 import { userRouter } from './router/userRouter.ts';
+import errorHandler, { AppError } from './utils/errorHandler.ts';
 
 const PORT = 3000;
 // comments
@@ -15,9 +16,13 @@ app.get('/', (req, res) => {
 
 app.use(`/users`, userRouter);
 
-app.use(/.*/, (req, res) => {
-  res.status(404).json({ message: 'page not found' });
+app.use((req, res, next) => {
+  // forward 404 to global error handler
+  next(new AppError('page not found', 404));
 });
+
+// global error handler
+app.use(errorHandler);
 
 app.listen(PORT, () =>
   console.log(`server is running on http://localhost:3000 `)
