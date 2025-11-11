@@ -1,5 +1,5 @@
 import express from 'express';
-
+import cors from 'cors';
 import { db } from './db/index.ts';
 
 import { userRouter } from './router/userRouter.ts';
@@ -8,11 +8,13 @@ import { orderRouters } from './router/orderRouters.ts';
 import { categoriesRouter } from './router/categoriesRouter.ts';
 
 const PORT = 3000;
-// comments
-// comments
-// comments
 
 const app = express();
+
+// Development convenience: allow all origins to avoid CORS blocking while
+// developing the frontend. Remove or tighten this before production.
+app.use(cors());
+
 app.use(express.json());
 
 db();
