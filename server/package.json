@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node --watch --experimental-transform-types --disable-warning=ExperimentalWarning src/index.ts"
+    "dev": "cross-env NODE_ENV=development nodemon --watch src --ext ts --exec \"tsx --env-file=.env.development.local ./src/index.ts\""
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,8 @@
     "typescript": "^5.9.3"
   },
   "dependencies": {
-    "express": "^5.1.0"
+    "cross-env": "^10.1.0",
+    "express": "^5.1.0",
+    "mongoose": "^8.19.3"
   }
 }
